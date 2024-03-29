@@ -3,13 +3,17 @@ COPY . /app
 
 WORKDIR /app
 
+
+RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
+
+
+
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
         bash \
         git \
         ca-certificates \
-        python-is-python3 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
